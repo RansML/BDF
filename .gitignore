@@ -1,0 +1,17 @@
+__pycache__/
+.remote-sync.json
+mdls/
+plots/
+query_data/
+/datasets/*
+!/datasets/generation/
+!/datasets/bernoulli-surface/
+/reports/*
+/configs/kyle_ransalu_tuned/*
+/configs/kyle_ransalu_tuned_dec/*
+.idea
+.DS_Store
+datasets/.DS_Store
+.ipynb_checkpoints
+.ipynb_checkpoints/*
+scratch.py

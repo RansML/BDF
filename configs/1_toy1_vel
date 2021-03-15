@@ -1,0 +1,32 @@
+{
+  "mode": "tqp",
+  "num_frames": 1,
+  "config": "",
+  "save_config": "./kyle_ransalu_tuned_dec/1_toy1_vel",
+
+  "likelihood_type": "gaussian",
+  "dataset_path": "./datasets/kyle_ransalu/1_toy/1_toy1_vel_train_normalized",
+  "area_min": [-1.2,-1.2,-1.2],
+  "area_max": [1.2,1.2,1.2],
+  "hinge_type": "grid",
+  "hinge_dist": [0.2, 0.2, 0.2],
+  "kernel_type": "rbf",
+  "gamma": [30],
+  "num_partitions": [1,1,1],
+  "partition_bleed": 0.25,
+  "save_model_path": "tmp",
+
+  "query_dist": [0.1,0.1,0.1,-0.6],
+  "query_blocks": 10,
+  "variance_only": true,
+  "eval_path": "./datasets/kyle_ransalu/1_toy/1_toy1_vel_test",
+  "eval": false,
+  "save_query_data_path": "tmp",
+
+  "occupancy_plot_type": "scatter",
+  "plot_volumetric": false,
+  "plot_axis": "x",
+  "plot_title": "1_toy1_vel",
+  "surface_threshold": [-1,120],
+  "variance_threshold": 30
+}
