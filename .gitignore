@@ -3,7 +3,6 @@ __pycache__/
 mdls/
 plots/
 query_data/
-/datasets/*
 !/datasets/generation/
 !/datasets/bernoulli-surface/
 /reports/*
