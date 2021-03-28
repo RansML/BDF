@@ -1,5 +1,5 @@
 """
-# 3D Bayesian Hilbert Maps with pytorch
+# 3D Bayesian Dynamic Fields with pytorch
 # Ransalu Senanayake, Jason Zheng, and Kyle Hatch
 """
 import math
@@ -42,6 +42,10 @@ class BHM_VELOCITY_PYTORCH:
             self.w_hatz = w_hatz
 
     def updateMuSig(self, mu_x, sig_x, mu_y, sig_y, mu_z, sig_z):
+        """
+        :param mu: mean
+        :param sig: variance
+        """
         self.mu_x = mu_x
         self.sig_x = sig_x
 
@@ -52,6 +56,10 @@ class BHM_VELOCITY_PYTORCH:
         self.sig_z = sig_z
 
     def fit(self, X, y_vx, y_vy, y_vz, eps=1e-10):
+        """
+        :param X: raw data
+        :param y: labels
+        """
         if self.likelihood_type == "gamma":
             return self.fit_gamma_likelihood(X, y_vx, y_vy, y_vz, eps)
         elif self.likelihood_type == "gaussian":
@@ -61,6 +69,10 @@ class BHM_VELOCITY_PYTORCH:
 
 
     def fit_gamma_likelihood(self, X, y_vx, y_vy, y_vz, eps=1e-10):
+        """
+        :param X: raw data
+        :param y: labels
+        """
         X = self.__sparse_features(X, self.rbf_kernel_type)
 
         all_ys = torch.cat((y_vx, y_vy, y_vz), dim=-1)
@@ -96,6 +108,10 @@ class BHM_VELOCITY_PYTORCH:
         return self.mu_x, self.sig_x, self.mu_y, self.sig_y, self.mu_z, self.sig_z
 
     def predict(self, Xq, query_blocks=-1, variance_only=False):
+        """
+        :param Xq: raw inquery points
+        :return: mean velocity
+        """
         if self.likelihood_type == "gamma":
             return self.predict_gamma_likelihood(Xq, query_blocks, variance_only)
         elif self.likelihood_type == "gaussian":
@@ -106,7 +122,7 @@ class BHM_VELOCITY_PYTORCH:
     def predict_gaussian_likelihood(self, Xq, query_blocks=-1, variance_only=False):
         """
         :param Xq: raw inquery points
-        :return: mean occupancy (Laplace approximation)
+        :return: mean and variance of velocity
         """
 
         Nq, M = Xq.shape[0], self.grid.shape[0]
@@ -181,6 +197,10 @@ class BHM_VELOCITY_PYTORCH:
         return mu_a_x, sig2_inv_a_x, mu_a_y, sig2_inv_a_y, mu_a_z, sig2_inv_a_z
 
     def predict_gamma_likelihood(self, Xq, query_blocks=-1):
+        """
+        :param Xq: raw inquery points
+        :return: mean velocity in each direction
+        """
         print(" Query data shape:", Xq.shape)
         Xq = self.__sparse_features(Xq, self.rbf_kernel_type).double()
         print(" Kernelized query data shape:", Xq.shape)
