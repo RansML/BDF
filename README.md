@@ -11,4 +11,4 @@ python spatun.py --config 1_toy1_vel --mode tqp
 
 ### Example Outputs
 
-# [Interactive Plots (you can interact with the plots using your mouse)](./plots/velocity)
+[Interactive Plots (you can interact with the plots using your mouse)](./plots/velocity)

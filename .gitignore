@@ -1,7 +1,6 @@
 __pycache__/
 .remote-sync.json
 mdls/
-plots/
 query_data/
 !/datasets/generation/
 !/datasets/bernoulli-surface/
